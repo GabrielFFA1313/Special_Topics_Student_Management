@@ -51,6 +51,7 @@ class ProgramController extends Controller
 
     public function store(StoreProgramRequest $request)
     {
+        $this->authorize('create', Program::class);
         $program = Program::create($request->validated());
         $program->refresh();
 
@@ -72,6 +73,7 @@ class ProgramController extends Controller
 
     public function update(UpdateProgramRequest $request, Program $program)
     {
+        $this->authorize('update', $program);
         $program->update($request->validated());
 
         return response()->json([
@@ -83,6 +85,7 @@ class ProgramController extends Controller
 
     public function destroy(Program $program)
     {
+        $this->authorize('delete', $program);
         if ($program->students()->exists()) {
             return response()->json([
                 'success' => false,

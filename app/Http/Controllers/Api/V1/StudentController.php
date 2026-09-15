@@ -13,6 +13,7 @@ class StudentController extends Controller
 {
     public function index(Request $request)
     {
+        $this->authorize('viewAny', Student::class);
         $query = Student::with('program');
 
         if ($search = $request->query('search')) {
@@ -60,6 +61,7 @@ class StudentController extends Controller
 
     public function store(StoreStudentRequest $request)
     {
+        $this->authorize('create', Student::class);
         $student = Student::create($request->validated());
         $student->refresh()->load('program');
 
@@ -72,6 +74,7 @@ class StudentController extends Controller
 
     public function show(Student $student)
     {
+        $this->authorize('view', $student);
         $student->load('program');
 
         return response()->json([
@@ -83,6 +86,7 @@ class StudentController extends Controller
 
     public function update(UpdateStudentRequest $request, Student $student)
     {
+        $this->authorize('update', $student);
         $student->update($request->validated());
         $student->load('program');
 
@@ -95,6 +99,7 @@ class StudentController extends Controller
 
     public function destroy(Student $student)
     {
+        $this->authorize('delete', $student);
         if ($student->enrollments()->exists()) {
             return response()->json([
                 'success' => false,
@@ -111,6 +116,7 @@ class StudentController extends Controller
     }
     public function academicRecord(Student $student)
 {
+    $this->authorize('view', $student); // same rule as viewing the profile
     $student->load('program');
 
     $enrollments = $student->enrollments()

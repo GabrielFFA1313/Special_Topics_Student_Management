@@ -14,6 +14,8 @@ class EnrollmentController extends Controller
 {
     public function index(Request $request)
     {
+        $this->authorize('viewAny', Grade::class);
+        $this->authorize('viewAny', Enrollment::class);
         $query = Enrollment::with(['student', 'courseOffering.course', 'grade']);
 
         if ($studentId = $request->query('student_id')) {
@@ -46,6 +48,7 @@ class EnrollmentController extends Controller
 
     public function store(StoreEnrollmentRequest $request)
     {
+        $this->authorize('create', Enrollment::class);
         $data = $request->validated();
         $data['enrollment_date'] = $data['enrollment_date'] ?? now()->toDateString();
 
@@ -61,7 +64,9 @@ class EnrollmentController extends Controller
 
     public function show(Enrollment $enrollment)
     {
+        $this->authorize('view', $enrollment);
         $enrollment->load(['student', 'courseOffering.course', 'grade']);
+
 
         return response()->json([
             'success' => true,
@@ -71,7 +76,8 @@ class EnrollmentController extends Controller
     }
 
     public function update(Request $request, Enrollment $enrollment)
-    {
+    { 
+        $this->authorize('update', $enrollment);
         $validated = $request->validate([
             'status' => ['required', 'in:enrolled,dropped,completed'],
         ]);
@@ -88,6 +94,7 @@ class EnrollmentController extends Controller
 
     public function destroy(Enrollment $enrollment)
     {
+        $this->authorize('delete', $enrollment);
         if ($enrollment->grade()->exists()) {
             return response()->json([
                 'success' => false,
@@ -106,9 +113,11 @@ class EnrollmentController extends Controller
     // GET /students/{id}/enrollments — nested route from section 8.1
     public function forStudent(Student $student)
     {
+        $this->authorize('view', $student); // reuses the same "own profile" rule
+
         $enrollments = $student->enrollments()
-            ->with(['courseOffering.course', 'grade'])
-            ->paginate(15);
+        ->with(['courseOffering.course', 'grade'])
+        ->paginate(15);
 
         return response()->json([
             'success' => true,
