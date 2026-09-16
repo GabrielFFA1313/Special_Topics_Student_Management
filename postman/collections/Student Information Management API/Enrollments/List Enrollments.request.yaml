@@ -1,0 +1,7 @@
+$kind: http-request
+url: "{{base_url}}/enrollments"
+method: GET
+body:
+  type: json
+  content: ""
+order: 2756164634616272

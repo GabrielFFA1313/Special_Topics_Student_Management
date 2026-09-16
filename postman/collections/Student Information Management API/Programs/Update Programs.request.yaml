@@ -1,0 +1,7 @@
+$kind: http-request
+url: "{{base_url}}/programs/1"
+method: PATCH
+body:
+  type: json
+  content: '{"name":"BS Info Tech Updated"}'
+order: 5000

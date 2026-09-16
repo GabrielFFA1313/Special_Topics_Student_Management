@@ -1,0 +1,7 @@
+$kind: http-request
+url: "{{base_url}}/courses/1"
+method: PATCH
+body:
+  type: json
+  content: '{"units":4}'
+order: 3758311525163694

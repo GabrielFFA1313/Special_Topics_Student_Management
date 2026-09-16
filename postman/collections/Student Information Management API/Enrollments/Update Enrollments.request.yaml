@@ -1,0 +1,7 @@
+$kind: http-request
+url: "{{base_url}}/enrollments/1"
+method: PATCH
+body:
+  type: json
+  content: '{"status":"completed"}'
+order: 3049627858421537

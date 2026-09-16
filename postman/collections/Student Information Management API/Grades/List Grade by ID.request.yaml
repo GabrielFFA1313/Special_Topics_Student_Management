@@ -1,0 +1,4 @@
+$kind: http-request
+url: "{{base_url}}/grades/1"
+method: GET
+order: 3833596540550096

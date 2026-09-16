@@ -1,0 +1,7 @@
+$kind: http-request
+url: "{{base_url}}/academic-terms"
+method: POST
+body:
+  type: json
+  content: '{"academic_year":"2027-2028","semester":"2nd Semester","start_date":"2027-01-15","end_date":"2027-05-30"}'
+order: 1789527144646

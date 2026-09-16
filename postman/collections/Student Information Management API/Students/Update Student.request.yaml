@@ -1,0 +1,7 @@
+$kind: http-request
+url: "{{base_url}}/students/1"
+method: PATCH
+body:
+  type: json
+  content: '{"year_level":2}'
+order: 4424437909296171

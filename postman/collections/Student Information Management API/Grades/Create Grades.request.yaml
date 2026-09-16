@@ -1,0 +1,7 @@
+$kind: http-request
+url: "{{base_url}}/grades"
+method: POST
+body:
+  type: json
+  content: '{"enrollment_id":2,"midterm_grade":1.25}'
+order: 1789527633654

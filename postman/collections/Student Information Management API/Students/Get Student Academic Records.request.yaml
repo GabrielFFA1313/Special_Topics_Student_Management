@@ -1,0 +1,4 @@
+$kind: http-request
+url: "{{base_url}}/students/1/academic-record"
+method: GET
+order: 4486350664960276

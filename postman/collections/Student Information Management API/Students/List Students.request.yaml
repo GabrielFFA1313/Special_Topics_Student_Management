@@ -1,0 +1,6 @@
+$kind: http-request
+url: "{{base_url}}/students?search=Juan"
+method: GET
+queryParams:
+  search: Juan
+order: 4147654219127026

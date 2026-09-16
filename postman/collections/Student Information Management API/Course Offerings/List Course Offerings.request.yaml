@@ -1,0 +1,4 @@
+$kind: http-request
+url: "{{base_url}}/course-offerings"
+method: GET
+order: 1993552408535025

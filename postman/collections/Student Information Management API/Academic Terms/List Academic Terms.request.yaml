@@ -1,0 +1,4 @@
+$kind: http-request
+url: GET {{base_url}}/academic-terms
+method: GET
+order: 3409328490649961

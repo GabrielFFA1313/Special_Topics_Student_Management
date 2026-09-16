@@ -1,0 +1,7 @@
+$kind: http-request
+url: "{{base_url}}/enrollments"
+method: POST
+body:
+  type: json
+  content: '{"student_id":1,"course_offering_id":1}'
+order: 1789527544599

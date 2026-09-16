@@ -1,0 +1,7 @@
+$kind: http-request
+url: "{{base_url}}/courses"
+method: POST
+body:
+  type: json
+  content: '{"course_code":"CS102","course_title":"Data Structures","units":3}'
+order: 1789527046288

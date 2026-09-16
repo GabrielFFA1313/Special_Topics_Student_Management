@@ -1,0 +1,7 @@
+$kind: http-request
+url: "{{base_url}}/students"
+method: POST
+body:
+  type: json
+  content: '{"student_number":"2026-00003","first_name":"Ana","last_name":"Reyes","program_id":1,"year_level":1}'
+order: 1789527308494

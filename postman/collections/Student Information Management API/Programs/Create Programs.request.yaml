@@ -1,0 +1,7 @@
+$kind: http-request
+url: "{{base_url}}/programs"
+method: POST
+body:
+  type: json
+  content: '{"code":"BSIT","name":"BS Information Technology"}'
+order: 2000

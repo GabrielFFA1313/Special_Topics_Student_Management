@@ -1,0 +1,7 @@
+$kind: http-request
+url: "{{base_url}}/course-offerings"
+method: POST
+body:
+  type: json
+  content: '{"course_id":1,"academic_term_id":1,"instructor_id":2,"section":"D","capacity":30}'
+order: 1789527480405
