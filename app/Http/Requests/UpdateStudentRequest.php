@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class StoreStudentRequest extends FormRequest
+class UpdateStudentRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -13,18 +14,20 @@ class StoreStudentRequest extends FormRequest
 
     public function rules(): array
     {
+        $studentId = $this->route('student')->id;
+
         return [
-            'student_number' => ['required', 'string', 'max:20', 'unique:students,student_number'],
-            'first_name' => ['required', 'string', 'max:100'],
+            'student_number' => ['sometimes', 'required', 'string', 'max:20', Rule::unique('students', 'student_number')->ignore($studentId)],
+            'first_name' => ['sometimes', 'required', 'string', 'max:100'],
             'middle_name' => ['nullable', 'string', 'max:100'],
-            'last_name' => ['required', 'string', 'max:100'],
+            'last_name' => ['sometimes', 'required', 'string', 'max:100'],
             'suffix' => ['nullable', 'string', 'max:20'],
             'birth_date' => ['nullable', 'date', 'before:today'],
             'email' => ['nullable', 'email', 'max:255'],
             'contact_number' => ['nullable', 'string', 'max:20'],
             'address' => ['nullable', 'string', 'max:255'],
-            'program_id' => ['required', 'integer', 'exists:programs,id'],
-            'year_level' => ['required', 'integer', 'min:1', 'max:6'],
+            'program_id' => ['sometimes', 'required', 'integer', 'exists:programs,id'],
+            'year_level' => ['sometimes', 'required', 'integer', 'min:1', 'max:6'],
             'status' => ['nullable', 'in:active,inactive,graduated,dropped'],
         ];
     }
